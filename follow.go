@@ -1,7 +1,6 @@
 package twitterscraper
 
 import (
-	"fmt"
 	"io"
 	"net/url"
 	"strings"
@@ -35,12 +34,7 @@ func (s *Scraper) Follow(userID string) error {
 	req.ContentLength = int64(len(data.Encode()))
 
 	var response interface{}
-	err = s.RequestAPI(req, &response)
-	if err != nil {
-		return err
-	}
-	fmt.Println(response)
-	return nil
+	return s.RequestAPI(req, &response)
 }
 
 func (s *Scraper) Unfollow(userID string) error {
@@ -71,11 +65,5 @@ func (s *Scraper) Unfollow(userID string) error {
 	req.ContentLength = int64(len(data.Encode()))
 
 	var response interface{}
-	err = s.RequestAPI(req, &response)
-	fmt.Println(response, err)
-
-	if err != nil {
-		return err
-	}
-	return nil
+	return s.RequestAPI(req, &response)
 }
